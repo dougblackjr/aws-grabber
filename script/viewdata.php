@@ -1,6 +1,7 @@
 <?php
 
 // Initialize variables
+chdir('..');
 define("DOCROOT", getcwd());
 require_once(DOCROOT . '/requires/ViewController.php');
 
