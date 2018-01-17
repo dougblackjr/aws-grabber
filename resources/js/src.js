@@ -1,3 +1,5 @@
+const apiURL = '../script/viewdata.php'
+
 var info = new Vue({
 
 	el: '#info',
@@ -23,12 +25,27 @@ var info = new Vue({
 
 	methods: {
 		fetchData: function () {
+			
+			var queryString = '';
+
+			if(this.channel) {
+				queryString += '?channel=' + this.channel
+			}
+
+			if(this.offset) {
+				if(queryString !== '') {
+					queryString += '&offset=' + this.offset
+				} else {
+					queryString += '?offset=' + this.offset
+				}
+			}
+
 			var xhr = new XMLHttpRequest()
 			var self = this
-			xhr.open('GET', apiURL + self.currentBranch)
+			xhr.open('GET', apiURL + queryString)
 			xhr.onload = function () {
-				self.commits = JSON.parse(xhr.responseText)
-				console.log(self.commits[0].html_url)
+				self.results = JSON.parse(xhr.responseText)
+				console.log(self.results)
 			}
 			xhr.send()
 		}
