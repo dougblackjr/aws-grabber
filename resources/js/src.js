@@ -63,8 +63,6 @@ var info = new Vue({
 
 					self.channelList = cNamesUnique
 				}
-
-				console.log(results.results)
 			}
 			xhr.send()
 		}
