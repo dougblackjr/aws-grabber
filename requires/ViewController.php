@@ -52,6 +52,7 @@ class ViewController
 		$sendResults->results = array();
 
 		while($row = $result->fetch_assoc()) {
+			$row['status_message'] = $this->awsMessages[$row['status']];
 			$sendResults->results[] = $row;
 		}
 		
