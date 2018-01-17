@@ -11,6 +11,7 @@
 		<!-- CSS -->
 		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"> -->
 		<link rel="stylesheet" href="resources/css/styles.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- script -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
 	</head>
@@ -31,10 +32,8 @@
 					<div class="container">
 						<div class="columns">
 							<div class="column">
-								<h2 class="title">Information on {{ pageTitle }}</h2>	
-							</div>
-							<div class="column">
 								<span class="theme-switcher select">
+									<label for="channel">Choose a channel</label>
 									<select :value="channel" name="channel" v-model="channel">
 										<option value="" selected="">Choose a channel</option>
 										<template v-for="cname in channelList">
@@ -55,8 +54,15 @@
 						</div>
 						<div v-for="result in results">
 							<div v-bind:class="'notification ' + result.status_style">
-								<p v-if="count > 0">{{ result.created_at}}<br /><small>{{ result.status_message }}</small></p>
-								<h2 v-else>No results for this query. ({{count}})</h2>
+								<div v-if="count > 0">
+									<h2 class="title"><span v-if="result.title !== null" class="icon has-text-warning"><i class="fa fa-exclamation-triangle"></i>&nbsp;</span>{{ result.status_message }}</h2>
+									<p>Channel: {{ result.channel }}</p>
+									<h4 v-if="result.title !== null">{{ result.title}}: {{ result.description }}</h4>
+									<p>Date: {{ result.date }}</p>
+								</div>
+								<div v-else>
+									<h2>No results for this query. ({{count}})</h2>
+								</div>
 							</div>
 						</div>
 					</div>
