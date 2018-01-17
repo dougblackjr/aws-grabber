@@ -46,6 +46,8 @@ class GrabController
 
 		$data = $this->getURL($url);
 
+		if($data == 'ERROR: URL is not valid') return $data;
+
 		$this->storeData($data);
 
 		return "All done";
@@ -61,7 +63,15 @@ class GrabController
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+
 		$retValue = curl_exec($ch);
+
+		if(curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200 || !$retValue) {
+
+			return 'ERROR: URL is not valid';
+
+		}
+
 		curl_close($ch);
 		
 		return $retValue;
