@@ -98,12 +98,13 @@ class GrabController
 		} else {
 
 			$date = new DateTime($sXML->channel->pubDate);
+			$now = new DateTime();
 
 			$sendData = array(
 				'channel' => (string) $sXML->channel->title[0],
-				'date' => $date->format('Y-m-d H:m:s'),
+				'date' => date('Y-m-d H:m:s', strtotime($date->format('Y-M-d H:m:s'))),
 				'status' => 0,
-				'created_at' => $now->format('Y-m-d H:m:s')
+				'created_at' => date('Y-m-d H:m:s', strtotime($now->format('Y-M-d H:m:s')))
 			);
 
 			$this->writeData($sendData);
