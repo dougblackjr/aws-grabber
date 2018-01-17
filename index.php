@@ -25,7 +25,7 @@
 								<div class="nav-item">
 									<span class="theme-switcher select">
 										<select :value="channel" name="channel" v-model="channel">
-											<option value="" disabled="" selected="">All!</option>
+											<option value="">All!</option>
 											<template v-for="cname in channelList">
 												<option :for="cname">{{ cname }}</option>
 											</template>
@@ -45,7 +45,7 @@
 				<!-- Hero content: will be in the middle -->
 				<div class="hero-body">
 					<div class="container">
-						<h1 class="title">Information on {{ channel }}</h1>
+						<h1 class="title">Information on {{ pageTitle }}</h1>
 					</div>
 				</div>
 			</section>
