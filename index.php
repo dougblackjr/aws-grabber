@@ -20,47 +20,48 @@
 				<div class="hero-head">
 					<nav class="main-nav nav has-shadow">
 						<div class="container">
-							<div class="nav-left">
-								<h1 class="title is-5">AWS Watch</h1>
-								<div class="nav-item">
-									<span class="theme-switcher select">
-										<select :value="channel" name="channel" v-model="channel">
-											<option value="">All!</option>
-											<template v-for="cname in channelList">
-												<option :for="cname">{{ cname }}</option>
-											</template>
-										</select>
-									</span>
-								</div>
-								<a class="nav-item " href="https://jenil.github.io/bulmaswatch/help/">Help</a>
+							<div class="nav-item">
+								<h1 class="title">AWS Watch</h1>
 							</div>
-							<span class="nav-toggle">
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
 						</div>
 					</nav>
 				</div>
 				<!-- Hero content: will be in the middle -->
 				<div class="hero-body">
 					<div class="container">
-						<h1 class="title">Information on {{ pageTitle }}</h1>
+						<div class="columns">
+							<div class="column">
+								<h2 class="title">Information on {{ pageTitle }}</h2>	
+							</div>
+							<div class="column">
+								<span class="theme-switcher select">
+									<select :value="channel" name="channel" v-model="channel">
+										<option value="" selected="">Choose a channel</option>
+										<template v-for="cname in channelList">
+											<option :for="cname">{{ cname }}</option>
+										</template>
+									</select>
+								</span>	
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
-			<div class="columns">
-				<section class="section">
-					<h1></h1>
-					<ul>
-						<li v-for="result in results">
-							{{ result.created_at}}
-							<br />
-							{{ result.status_message }}
-						</li>
-					</ul>
-				</section>
-			</div>
+			<section class="section">
+				<div class="columns">
+					<div class="column">
+						<div class="notification">
+							<p>{{count}} results for {{ pageTitle }}</p>
+						</div>
+						<div v-for="result in results">
+							<div v-bind:class="'notification ' + result.status_style">
+								<p v-if="count > 0">{{ result.created_at}}<br /><small>{{ result.status_message }}</small></p>
+								<h2 v-else>No results for this query. ({{count}})</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
 	</body>
 	<script src="resources/js/src.js"></script>
