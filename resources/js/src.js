@@ -6,6 +6,7 @@ var info = new Vue({
 
 	data: {
 		channel: null,
+		pageTitle: 'All Channels',
 		channelList: null,
 		offset: 0,
 		count: 0,
@@ -31,6 +32,9 @@ var info = new Vue({
 
 			if(this.channel) {
 				queryString += '?channel=' + this.channel
+				this.pageTitle = this.channel
+			} else {
+				this.pageTitle = 'All Channels'
 			}
 
 			if(this.offset) {
