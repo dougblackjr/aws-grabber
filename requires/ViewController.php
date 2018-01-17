@@ -22,6 +22,9 @@ class ViewController
 			"Service disruption"
 		);
 
+		// For view, define Docroot
+		if(!defined("DOCROOT")) define("DOCROOT", getcwd());
+
 		// Database info
 		require_once(DOCROOT . '/config/database.php');
 
