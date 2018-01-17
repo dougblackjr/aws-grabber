@@ -1,4 +1,4 @@
-const apiURL = '../script/viewdata.php'
+const apiURL = 'script/viewdata.php'
 
 var info = new Vue({
 
@@ -6,6 +6,7 @@ var info = new Vue({
 
 	data: {
 		channel: null,
+		channelList: null,
 		offset: 0,
 		count: 0,
 		results: null
@@ -16,7 +17,7 @@ var info = new Vue({
 	},
 
 	watch: {
-		currentChannel: 'fetchData'
+		channel: 'fetchData'
 	},
 
 	mounted: {
@@ -44,8 +45,22 @@ var info = new Vue({
 			var self = this
 			xhr.open('GET', apiURL + queryString)
 			xhr.onload = function () {
-				self.results = JSON.parse(xhr.responseText)
-				console.log(self.results)
+				let results = JSON.parse(xhr.responseText)
+				self.count = results.count
+				self.results = results.results
+
+				if (self.channelList === null) {
+					let cNames = [];
+					results.results.forEach(function(r) {
+						cNames.push(r.channel)
+					});
+
+					let cNamesUnique = Array.from(new Set(cNames))
+
+					self.channelList = cNamesUnique
+				}
+
+				console.log(results.results)
 			}
 			xhr.send()
 		}
