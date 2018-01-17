@@ -102,7 +102,7 @@ class ViewController
 		
 		}
 
-		$query .= 'ORDER BY created_at DESC LIMIT 100';
+		$query .= 'ORDER BY date DESC LIMIT 100';
 
 		if(!is_null($offset) && (int) $offset > 0) {
 
