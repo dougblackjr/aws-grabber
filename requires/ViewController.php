@@ -47,15 +47,46 @@ class ViewController
 
 		$sendResults = new stdClass();
 
-		$sendResults->count = $result->num_rows;
-
 		$sendResults->results = array();
 
-		while($row = $result->fetch_assoc()) {
-			$row['status_message'] = $this->awsMessages[$row['status']];
-			$sendResults->results[] = $row;
+		if(is_null($result)) {
+
+			$sendResults->count = 0;
+
+			$sendResults->results[] = array(
+				'title' => 'No Results',
+				'status_style' => 'is-info'
+			);
+
+		} else {
+
+			$sendResults->count = $result->num_rows;
+
+			while($row = $result->fetch_assoc()) {
+				$row['status_message'] = $this->awsMessages[$row['status']];
+
+				switch ($row['status']) {
+					case 0:
+						$row['status_style'] = 'is-success';
+						break;
+					case 1:
+						$row['status_style'] = 'is-info';
+						break;
+					case 2:
+						$row['status_style'] = 'is-warning';
+						break;
+					case 3:
+						$row['status_style'] = 'is-danger';
+						break;
+					
+					default:
+						$row['status_style'] = '';
+						break;
+				}
+				$sendResults->results[] = $row;
+			}
+
 		}
-		
 		return json_encode($sendResults);
 
 	}
@@ -71,9 +102,9 @@ class ViewController
 		
 		}
 
-		$query .= 'LIMIT 100';
+		$query .= 'ORDER BY created_at DESC LIMIT 100';
 
-		if(!is_null($offset)) {
+		if(!is_null($offset) && (int) $offset > 0) {
 
 			$query .= ' OFFSET ' . $offset;
 			
