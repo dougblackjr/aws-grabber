@@ -69,6 +69,33 @@
 				</div>
 			</section>
 		</div>
+		<footer class="footer">
+			<div class="container">
+				<div class="content has-text-centered">
+					<p>
+						<a class="icon" href="https://github.com/dougblackjr" target="_blank">
+							<i class="fa fa-github"></i>
+						</a>
+						&nbsp;
+						<a class="icon" href="https://twitter.com/dougblackjr" target="_blank">
+							<i class="fa fa-twitter"></i>
+						</a>
+						&nbsp;
+						<a class="icon" href="mailto:dougblackjr@gmail.com">
+							<i class="fa fa-envelope"></i>
+						</a>
+						&nbsp;
+						<a class="icon" href="tel:2154078140">
+							<i class="fa fa-phone"></i>
+						</a>
+					</p>
+					<p>
+						<h2>Hire Doug Black</h2>
+						<p><small>subtle messaging...</small></p>
+					</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 	<script src="resources/js/src.js"></script>
 
