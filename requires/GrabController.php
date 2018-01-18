@@ -11,6 +11,8 @@ class GrabController
 
 	public $db;
 
+	public $deleteEntriesOlderThan;
+
 	function __construct()
 	{
 
@@ -23,12 +25,15 @@ class GrabController
 		);
 
 		// Database info
-		require_once(DOCROOT . '/config/database.php');
+		require_once(DOCROOT . '/config/settings.php');
 
 		$this->databaseInfo = $dataconnection;
 
 		// Set DB table
 		$this->dbTable = $dataTable;
+
+		// Set delete older than
+		$this->deleteEntriesOlderThan = (int) $deleteEntriesOlderThan;
 
 		// Start DB connection
 		$this->db = $this->establishDBConnection();
@@ -49,6 +54,8 @@ class GrabController
 		if($data == 'ERROR: URL is not valid') return $data;
 
 		$this->storeData($data);
+
+		$this->deleteOldEntries();
 
 		return "All done";
 
@@ -217,6 +224,18 @@ class GrabController
 
 		return 0;
 
+	}
+
+	function deleteOldEntries()
+	{
+
+		$query = 'DELETE FROM ' . $this->dbTable . ' WHERE search_date < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL ' . $this->deleteEntriesOlderThan . ' DAY))';
+
+		if($this->db->query($query) === TRUE) {
+
+			echo "Deleted old entries." . PHP_EOL;
+
+		}
 	}
 
 }
