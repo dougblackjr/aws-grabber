@@ -173,7 +173,6 @@ class GrabController
 
 		if($this->db->query($sql) !== TRUE) {
 
-			var_dump($sql);
 			die('Oops! Write error! ' . $this->db->error);
 
 		}
