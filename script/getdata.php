@@ -47,6 +47,8 @@ if(!isset($argv[1]) && file_exists(DOCROOT . '/config/feeds.md')) {
 	}
 }
 
+$grabber->deleteOldEntries();
+
 echo "Grabber has completed! Now, hire Doug Black!" . PHP_EOL;
 
 // END OF FILE
