@@ -26,7 +26,7 @@ class ViewController
 		if(!defined("DOCROOT")) define("DOCROOT", getcwd());
 
 		// Database info
-		require_once(DOCROOT . '/config/database.php');
+		require_once(DOCROOT . '/config/settings.php');
 
 		$this->databaseInfo = $dataconnection;
 
@@ -102,7 +102,7 @@ class ViewController
 		
 		}
 
-		$query .= 'ORDER BY date DESC LIMIT 100';
+		$query .= 'ORDER BY date DESC LIMIT 500';
 
 		if(!is_null($offset) && (int) $offset > 0) {
 
