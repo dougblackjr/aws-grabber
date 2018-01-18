@@ -189,8 +189,8 @@ class GrabController
 		channel VARCHAR(100) NOT NULL,
 		date DATETIME NOT NULL,
 		status INT(4) NOT NULL,
-		title VARCHAR(100),
-		description VARCHAR(500),
+		title VARCHAR(200),
+		description VARCHAR(2000),
 		created_at DATETIME NOT NULL
 		)";
 
