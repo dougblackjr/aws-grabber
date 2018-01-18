@@ -12,4 +12,4 @@ $dataconnection = array(
 $dataTable = 'aws_data';
 
 // This deletes entries older than this number. Integer
-$deleteEntriesOlderThan = 7;
+$deleteEntriesOlderThan = 365;
