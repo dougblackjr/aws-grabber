@@ -1,2 +1,13 @@
 https://status.aws.amazon.com/rss/ec2systemsmanager-us-east-1.rss
 https://status.aws.amazon.com/rss/appstream2-us-east-1.rss
+https://status.aws.amazon.com/rss/clouddirectory-us-east-2.rss
+https://status.aws.amazon.com/rss/cloudfront.rss
+https://status.aws.amazon.com/rss/dynamodb-us-east-2.rss
+https://status.aws.amazon.com/rss/ec2systemsmanager-us-east-2.rss
+https://status.aws.amazon.com/rss/elb-us-east-1.rss
+https://status.aws.amazon.com/rss/lightsail-us-east-2.rss
+https://status.aws.amazon.com/rss/rds-us-east-1.rss
+https://status.aws.amazon.com/rss/route53.rss
+https://status.aws.amazon.com/rss/route53domainregistration.rss
+https://status.aws.amazon.com/rss/lambda-us-east-1.rss
+https://status.aws.amazon.com/rss/state-us-east-1.rss
