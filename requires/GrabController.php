@@ -55,8 +55,6 @@ class GrabController
 
 		$this->storeData($data);
 
-		$this->deleteOldEntries();
-
 		return "All done";
 
 	}
@@ -103,8 +101,8 @@ class GrabController
 					'channel' => (string) $sXML->channel->title[0],
 					'date' => date('Y-m-d H:m:s', strtotime($date->format('Y-M-d H:m:s'))),
 					'status' => $this->getStatus($item->title),
-					'title' => (string) $item->title,
-					'description' => (string) $item->description,
+					'title' => addslashes((string) $item->title),
+					'description' => addslashes((string) $item->description),
 					'created_at' => date('Y-m-d H:m:s', strtotime($now->format('Y-M-d H:m:s')))
 				);
 
@@ -175,6 +173,7 @@ class GrabController
 
 		if($this->db->query($sql) !== TRUE) {
 
+			var_dump($sql);
 			die('Oops! Write error! ' . $this->db->error);
 
 		}
@@ -229,7 +228,7 @@ class GrabController
 	function deleteOldEntries()
 	{
 
-		$query = 'DELETE FROM ' . $this->dbTable . ' WHERE search_date < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL ' . $this->deleteEntriesOlderThan . ' DAY))';
+		$query = 'DELETE FROM ' . $this->dbTable . ' WHERE DATE(date) < (curdate() - INTERVAL ' . $this->deleteEntriesOlderThan . ' DAY)';
 
 		if($this->db->query($query) === TRUE) {
 
